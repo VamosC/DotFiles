@@ -29,9 +29,15 @@ Plugin 'gmarik/Vundle.vim'
 " Vundle used Bundle instead of Plugin)
 Plugin 'tmhedberg/SimpylFold' " Plugin for code folding
 Plugin 'vim-scripts/indentpython.vim'
-Plugin 'Valloric/YouCompleteMe'
-Plugin 'vim-syntastic/syntastic'
-Plugin 'nvie/vim-flake8'
+Plugin 'Valloric/YouCompleteMe' " Plugin for code complete
+Plugin 'vim-syntastic/syntastic' " Plugin for syntax checker
+Plugin 'nvie/vim-flake8' " Plugin for python syntax checker
+Plugin 'jnurmine/Zenburn' " Plugin for color scheme
+Plugin 'altercation/vim-colors-solarized' " Plugin for color scheme
+Plugin 'preservim/nerdtree' " Plugin for file tree
+Plugin 'kien/ctrlp.vim'
+Plugin 'tpope/vim-fugitive' " Plugin for a wrapper git
+Plugin 'Lokaltog/powerline', {'rtp': 'powerline/bindings/vim/'}
 
 " All of your Plugins must be added before the following line
 call vundle#end() " required
@@ -50,7 +56,7 @@ nnoremap <space> za
 " set foldmethod=indent
 " set foldlevel=99
 
-" configurations about SimpylFold
+" configuration about SimpylFold
 let g:SimpylFold_docstring_preview=1
 " let g:SimpylFold_fold_docstring=0
 " let g:SimpylFold_fold_import=0
@@ -69,9 +75,11 @@ au BufNewFile,BufRead *.js, *.html, *.css
 	\ set softtabstop=2 |
 	\ set shiftwidth=2 
 highlight BadWhitespace ctermfg=16 ctermbg=9 guifg=#000000 guibg=#F8F8F0
+
 " flagging unnecessary whitespace
 au BufNewFile,BufRead  *.py,*.pyw,*.c,*.h match BadWhitespace /\s\+$/
 
+" syntax check
 syntax on "syntax highlight
 let python_highlight_all=1
 
@@ -85,8 +93,19 @@ if 'VIRTUAL_ENV' in os.environ:
 	execfile(activate_this, dict(__file__=activate_this))
 EOF
 
-" configurations with flake8
+" configuration with flake8
 " Run the flake8 check every time you save a Python file
 au BufWritePost *.py call flake8#Flake8()
 " remap key bindings to F3
 au FileType python map <buffer> <F3> :call flake8#Flake8()<CR>
+
+" color scheme
+" F5 to change the mode
+set background=dark
+colorscheme zenburn
+call togglebg#map("<F5>")
+
+" configuration about NERDTree
+" Map key to shortcuts NERDTree 
+map <C-n> :NERDTreeToggle<CR>
+

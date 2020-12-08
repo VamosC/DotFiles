@@ -11,7 +11,7 @@ Plugin 'gmarik/Vundle.vim'
 " add all plugins here
 Plugin 'Vimjas/vim-python-pep8-indent'
 Plugin 'vim-python/python-syntax'
-Plugin 'morhetz/gruvbox'
+Plugin 'VamosC/gruvbox'
 Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
 Plugin 'tpope/vim-fugitive' " wrapper git

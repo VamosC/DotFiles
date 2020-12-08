@@ -38,6 +38,7 @@ syntax on
 let g:python_highlight_all = 1
 
 set background=dark
+set t_Co=256
 " Plugin 'morhetz/gruvbox'
 autocmd vimenter * ++nested colorscheme gruvbox
 

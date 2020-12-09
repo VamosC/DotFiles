@@ -18,11 +18,12 @@ Plugin 'tpope/vim-fugitive' " wrapper git
 Plugin 'preservim/nerdtree' " file system explorer
 Plugin 'bling/vim-bufferline'
 Plugin 'preservim/tagbar'
+Plugin 'airblade/vim-gitgutter' " git diff
+Plugin 'ctrlpvim/ctrlp.vim' " fuzzy search
 "Plugin 'tmhedberg/SimpylFold' " Plugin for code folding
 "Plugin 'Valloric/YouCompleteMe' " Plugin for code complete and syntax checker
 "Plugin 'vim-syntastic/syntastic' " Plugin for syntax checker
 "Plugin 'nvie/vim-flake8' " Plugin for python syntax checker
-"Plugin 'kien/ctrlp.vim' " Plugin for file searching
 "Plugin 'google/vim-maktaba'
 "Plugin 'google/vim-codefmt'
 "Plugin 'google/vim-glaive'
@@ -38,7 +39,6 @@ syntax on
 let g:python_highlight_all = 1
 
 set background=dark
-set t_Co=256
 " Plugin 'morhetz/gruvbox'
 autocmd vimenter * ++nested colorscheme gruvbox
 
@@ -53,6 +53,21 @@ autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isT
 " Plugin 'preservim/tagbar'
 let mapleader = ","
 nmap <Leader>tb :TagbarToggle<CR>
+
+" Plugin 'airblade/vim-gitgutter'
+let mapleader = ","
+nmap <Leader>ggd :GitGutterDisable<CR>
+nmap <Leader>gge :GitGutterEnable<CR>
+nmap <Leader>ggt :GitGutterToggle<CR>
+nmap <Leader>gglt :GitGutterLineHighlightsToggle<CR>
+nmap <Leader>ggf :GitGutterFold<CR>
+nmap ]h <Plug>(GitGutterNextHunk)
+nmap [h <Plug>(GitGutterPrevHunk)
+
+" Plugin 'ctrlpvim/ctrlp.vim'
+let mapleader = ","
+nmap <Leader>cp :CtrlPMRU<CR>
+
 " basic configuration
 set number "display line number
 set ruler
@@ -68,6 +83,8 @@ nnoremap <C-J> <C-W><C-J>
 nnoremap <C-K> <C-W><C-K>
 nnoremap <C-L> <C-W><C-L>
 nnoremap <C-H> <C-W><C-H>
+let mapleader = ","
+nmap <Leader>nh :noh<CR>
 
 " call glaive#Install()
 " Glaive codefmt plugin[mappings]
@@ -118,34 +135,6 @@ nnoremap <C-H> <C-W><C-H>
 " let g:ycm_use_clangd = 1
 " let g:ycm_clangd_binary_path='/usr/local/opt/llvm/bin/clangd'
 " nnoremap <leader>jd :tab split \| YcmCompleter GoTo<CR>
-" 
-" " folding in markdown
-" function! MarkdownLevel()
-"     if getline(v:lnum) =~ '^# .*$'
-"         return ">1"
-"     endif
-"     if getline(v:lnum) =~ '^## .*$'
-"         return ">2"
-"     endif
-"     if getline(v:lnum) =~ '^### .*$'
-"         return ">3"
-"     endif
-"     if getline(v:lnum) =~ '^#### .*$'
-"         return ">4"
-"     endif
-"     if getline(v:lnum) =~ '^##### .*$'
-"         return ">5"
-"     endif
-"     if getline(v:lnum) =~ '^###### .*$'
-"         return ">6"
-"     endif
-"     return "="
-" endfunction
-" au BufEnter *.md setlocal foldexpr=MarkdownLevel()  
-" au BufEnter *.md setlocal foldmethod=expr 
-" 
-" " map noh
-" nnoremap <F3> :noh<CR>
 " 
 " 
 " let g:syntastic_python_checkers = ['flake8']

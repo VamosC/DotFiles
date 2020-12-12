@@ -20,13 +20,10 @@ Plugin 'bling/vim-bufferline'
 Plugin 'preservim/tagbar'
 Plugin 'airblade/vim-gitgutter' " git diff
 Plugin 'ctrlpvim/ctrlp.vim' " fuzzy search
-"Plugin 'tmhedberg/SimpylFold' " Plugin for code folding
-"Plugin 'Valloric/YouCompleteMe' " Plugin for code complete and syntax checker
-"Plugin 'vim-syntastic/syntastic' " Plugin for syntax checker
-"Plugin 'nvie/vim-flake8' " Plugin for python syntax checker
-"Plugin 'google/vim-maktaba'
-"Plugin 'google/vim-codefmt'
-"Plugin 'google/vim-glaive'
+Plugin 'dense-analysis/ale' " asynchronous lint engine
+Plugin 'Konfekt/FastFold'
+Plugin 'tmhedberg/SimpylFold' " python
+Plugin 'jiangmiao/auto-pairs'
 
 " All of your Plugins must be added before the following line
 call vundle#end() " required
@@ -55,6 +52,7 @@ let mapleader = ","
 nmap <Leader>tb :TagbarToggle<CR>
 
 " Plugin 'airblade/vim-gitgutter'
+let g:gitgutter_enabled = 0
 let mapleader = ","
 nmap <Leader>ggd :GitGutterDisable<CR>
 nmap <Leader>gge :GitGutterEnable<CR>
@@ -67,6 +65,29 @@ nmap [h <Plug>(GitGutterPrevHunk)
 " Plugin 'ctrlpvim/ctrlp.vim'
 let mapleader = ","
 nmap <Leader>cp :CtrlPMRU<CR>
+
+" Plugin 'dense-analysis/ale' " asynchronous lint engine
+" customizing the echoed message
+let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
+let g:ale_echo_msg_error_str = 'E'
+let g:ale_echo_msg_warning_str = 'W'
+
+let g:ale_lint_on_save = 0
+
+" python linter
+let g:ale_linters = {'python':['pylint', 'jedils']}
+let g:ale_fixers = {'python':['isort', 'yapf']}
+nmap <F2> :ALEFix<CR>
+
+let mapleader = ","
+nmap <Leader>gd :ALEGoToDefinition<CR>
+
+" Plugin 'Konfekt/FastFold'
+let mapleader = ","
+nmap <Leader>ffu :FastFoldUpdate<CR>
+
+" Plugin 'tmhedberg/SimpylFold' " python
+let g:SimpylFold_fold_import=0
 
 " basic configuration
 set number "display line number
@@ -83,71 +104,17 @@ nnoremap <C-J> <C-W><C-J>
 nnoremap <C-K> <C-W><C-K>
 nnoremap <C-L> <C-W><C-L>
 nnoremap <C-H> <C-W><C-H>
+
 let mapleader = ","
 nmap <Leader>nh :noh<CR>
 
-" call glaive#Install()
-" Glaive codefmt plugin[mappings]
-" Glaive codefmt google_java_executable="java -jar /path/to/google-java-format-VERSION-all-deps.jar"
-" 
-" " split navigations
-" 
-" " Enable folding with the space
-" nnoremap <space> za
-" 
-" " Enable folding
-" " set foldmethod=indent
-" " set foldlevel=99
-" 
-" " configuration about SimpylFold
-" let g:SimpylFold_docstring_preview=1
-" " let g:SimpylFold_fold_docstring=0
-" " let g:SimpylFold_fold_import=0
-" 
-" 
-" " python with virtualenv support
-" python3 << EOF
-" import os
-" import sys
-" if 'VIRTUAL_ENV' in os.environ:
-"	project_base_dir = os.environ['VIRTUAL_ENV']
-"	activate_this = os.path.join(project_base_dir, 'bin/activate_this.py')
-"	with open(activate_this, 'r') as f:
-"	    exec(f.read(), dict(__file__=activate_this))
-" EOF
-" 
-" " configuration with flake8
-" " Run the flake8 check every time you save a Python file
-"  au BufWritePost *.py call flake8#Flake8()
-" let g:flake8_show_in_file=1  " show
-" let g:flake8_show_in_gutter=1  " show
-" " remap key bindings to F3
-" au FileType python map <buffer> <F4> :call flake8#Flake8()<CR>
-" 
-" 
-" " configuration about YouCompleteMe
-" " indicating the path of thirty package
-" let g:ycm_python_sys_path = ['/usr/local/lib/python3.7/site-packages']
-" let g:ycm_extra_conf_vim_data = [
-"			\ 'g:ycm_python_sys_path'
-"			\ ]
-" " let g:ycm_global_ycm_extra_conf = '~/global_extra_conf.py'
-" let g:ycm_use_clangd = 1
-" let g:ycm_clangd_binary_path='/usr/local/opt/llvm/bin/clangd'
-" nnoremap <leader>jd :tab split \| YcmCompleter GoTo<CR>
-" 
-" 
-" let g:syntastic_python_checkers = ['flake8']
-" let g:syntastic_always_populate_loc_list = 1
-" let g:syntastic_auto_loc_list = 1
-" let g:syntastic_check_on_open = 0
-" let g:syntastic_check_on_wq = 0 " check when save the file
-" au FileType python map <buffer> <F1> :call SyntasticCheck()<CR>
-" 
-" " copy from vim to system clipboard
-" " vmap '' :w !pbcopy<CR><CR>
-" vnoremap '' "+y<CR>
-" 
-" set laststatus=2
-" set tags=tags
-" nnoremap d "_d
+nnoremap <space> za
+
+" vim/system clipboard
+
+if has('macunix')
+    let mapleader = ","
+    nnoremap <Leader>p "*p
+    noremap <Leader>y "*y
+    nnoremap <Leader>yy "*yy
+endif

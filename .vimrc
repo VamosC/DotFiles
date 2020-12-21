@@ -38,6 +38,7 @@ let g:python_highlight_all = 1
 set background=dark
 " Plugin 'morhetz/gruvbox'
 autocmd vimenter * ++nested colorscheme gruvbox
+set t_Co=256
 
 " Plugin 'vim-airline/vim-airline'
 let g:airline_theme = 'powerlineish'
@@ -118,3 +119,12 @@ if has('macunix')
     noremap <Leader>y "*y
     nnoremap <Leader>yy "*yy
 endif
+
+" vim script
+function! AddPdb(text)
+    exe "normal! o" . a:text . "\<Esc>"
+endfunction
+
+let mapleader = ","
+nnoremap <Leader>pdb :call AddPdb('import pdb; pdb.set_trace()')<CR>
+

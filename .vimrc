@@ -14,14 +14,8 @@ Plugin 'vim-python/python-syntax'
 Plugin 'VamosC/gruvbox'
 Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
-Plugin 'tpope/vim-fugitive' " wrapper git
 Plugin 'preservim/nerdtree' " file system explorer
 Plugin 'bling/vim-bufferline'
-Plugin 'preservim/tagbar'
-Plugin 'airblade/vim-gitgutter' " git diff
-Plugin 'ctrlpvim/ctrlp.vim' " fuzzy search
-Plugin 'dense-analysis/ale' " asynchronous lint engine
-Plugin 'Konfekt/FastFold'
 Plugin 'tmhedberg/SimpylFold' " python
 Plugin 'jiangmiao/auto-pairs'
 
@@ -47,48 +41,6 @@ let g:airline_theme = 'powerlineish'
 let mapleader = ","
 map <Leader>ne :NERDTreeToggle<CR>
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
-
-" Plugin 'preservim/tagbar'
-let mapleader = ","
-nmap <Leader>tb :TagbarToggle<CR>
-
-" Plugin 'airblade/vim-gitgutter'
-let g:gitgutter_enabled = 0
-let mapleader = ","
-nmap <Leader>ggd :GitGutterDisable<CR>
-nmap <Leader>gge :GitGutterEnable<CR>
-nmap <Leader>ggt :GitGutterToggle<CR>
-nmap <Leader>gglt :GitGutterLineHighlightsToggle<CR>
-nmap <Leader>ggf :GitGutterFold<CR>
-nmap ]h <Plug>(GitGutterNextHunk)
-nmap [h <Plug>(GitGutterPrevHunk)
-
-" Plugin 'ctrlpvim/ctrlp.vim'
-let mapleader = ","
-nmap <Leader>cp :CtrlPMRU<CR>
-
-" Plugin 'dense-analysis/ale' " asynchronous lint engine
-" customizing the echoed message
-let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
-let g:ale_echo_msg_error_str = 'E'
-let g:ale_echo_msg_warning_str = 'W'
-
-let g:ale_lint_on_save = 0
-
-" python linter
-let g:ale_linters = {'python':['pylint', 'jedils']}
-let g:ale_fixers = {'python':['isort', 'yapf']}
-nmap <F2> :ALEFix<CR>
-
-let mapleader = ","
-nmap <Leader>gd :ALEGoToDefinition<CR>
-
-" Plugin 'Konfekt/FastFold'
-let mapleader = ","
-nmap <Leader>ffu :FastFoldUpdate<CR>
-
-" Plugin 'tmhedberg/SimpylFold' " python
-let g:SimpylFold_fold_import=0
 
 " basic configuration
 set number "display line number

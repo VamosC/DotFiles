@@ -40,6 +40,9 @@ let g:airline_theme = 'powerlineish'
 " Plugin 'preservim/nerdtree'
 let mapleader = ","
 map <Leader>ne :NERDTreeToggle<CR>
+" map <Leader>ne :Explore<CR>
+" map <Leader>ve :Vexplore<CR>
+" map <Leader>he :Hexplore<CR>
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 
 " basic configuration
@@ -51,6 +54,9 @@ set hlsearch
 set incsearch
 set splitbelow
 set cursorline "highlight current line
+" set sw=4
+" set ts=4
+" set expandtab
 
 " key mapping
 nnoremap <C-J> <C-W><C-J>

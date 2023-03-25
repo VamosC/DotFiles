@@ -91,3 +91,56 @@ endfunction
 let mapleader = ","
 nnoremap <Leader>d :call AddPdb('import pdb; pdb.set_trace()')<CR>
 " nnoremap <Leader>pdb :call AddPdb('import pdb; pdb.set_trace()')<CR>
+
+" Naive implementation for python comment
+" function! GetCharacterAt(pos)
+"     let l:current_line = getline('.')
+"     let l:pos_char = current_line[a:pos - 1]
+"     return l:pos_char
+" endfunction
+"
+" function! IsWhiteSpace(c)
+"     return a:c =~ '\s' ? 1 : 0
+" endfunction
+"
+" function! IsCharacterSpaceAt(pos)
+"     let l:pos_char = GetCharacterAt(a:pos)
+"     if IsWhiteSpace(l:pos_char)
+"         return 1
+"     else
+"         return 0
+"     endif
+" endfunction
+"
+" function! PyCommentThisLine()
+"     if IsCharacterSpaceAt(1)
+"         exe "normal! 0wi" . "# " . "\<Esc>"
+"     else
+"         exe "normal! 0i" . "# " . "\<Esc>"
+"     endif
+" endfunction
+" map <Leader>/ :call PyCommentThisLine()<CR>
+"
+" function! PyUnCommentThisLine()
+"     if IsCharacterSpaceAt(1)
+"         exe "normal! 0wxx" . "\<Esc>"
+"     else
+"         exe "normal! 0xx" . "\<Esc>"
+"     endif
+" endfunction
+"
+" unlet mapleader
+" map <Leader>/ :call PyUnCommentThisLine()<CR>
+
+function! ToggleComment()
+    let l:comment_char = '#'
+    let l:line = getline('.')
+    if l:line =~ '^' . l:comment_char . '\s\?'
+        let l:line = substitute(l:line, '^' . l:comment_char . '\s\?', '', '')
+    else
+        let l:line = l:comment_char . ' ' . l:line
+    endif
+    call setline('.', l:line)
+endfunction
+
+map <Leader>/ :call ToggleComment()<CR>

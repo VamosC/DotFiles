@@ -68,6 +68,10 @@ nnoremap <C-H> <C-W><C-H>
 let mapleader = ","
 nmap <Leader>nh :noh<CR>
 
+" if nerdtree is not installed, uncomment the following two lines
+" map <Leader>ne :Vexplore<CR>
+" map <Leader>he :Hexplore<CR>
+
 nnoremap <space> za
 
 " vim/system clipboard
@@ -85,5 +89,5 @@ function! AddPdb(text)
 endfunction
 
 let mapleader = ","
-nnoremap <Leader>pdb :call AddPdb('import pdb; pdb.set_trace()')<CR>
-
+nnoremap <Leader>d :call AddPdb('import pdb; pdb.set_trace()')<CR>
+" nnoremap <Leader>pdb :call AddPdb('import pdb; pdb.set_trace()')<CR>

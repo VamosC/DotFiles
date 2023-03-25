@@ -54,6 +54,7 @@ set hlsearch
 set incsearch
 set splitbelow
 set cursorline "highlight current line
+" hi CursorLine cterm=None ctermgb=gray ctermfg=black
 " set sw=4
 " set ts=4
 " set expandtab

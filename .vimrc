@@ -22,6 +22,12 @@ Plugin 'jiangmiao/auto-pairs'
 " All of your Plugins must be added before the following line
 call vundle#end() " required
 
+"" If the plugin manager like Vundle is not available, we need to install the plugin manually
+"" And put the plugin, e.g. SimpylFold into ~/.vim/plugin/SimpylFold
+"" Then uncomment the following line
+"" Note: runtime can be regraded as PATH in vim
+" runtime plugin/SimpylFold/plugin/SimpylFold.vim
+
 filetype plugin indent on "required
 
 " plugin configuration
@@ -40,9 +46,6 @@ let g:airline_theme = 'powerlineish'
 " Plugin 'preservim/nerdtree'
 let mapleader = ","
 map <Leader>ne :NERDTreeToggle<CR>
-" map <Leader>ne :Explore<CR>
-" map <Leader>ve :Vexplore<CR>
-" map <Leader>he :Hexplore<CR>
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 
 " basic configuration
@@ -68,7 +71,7 @@ nnoremap <C-H> <C-W><C-H>
 let mapleader = ","
 nmap <Leader>nh :noh<CR>
 
-" if nerdtree is not installed, uncomment the following two lines
+"" if nerdtree is not installed, uncomment the following two lines
 " map <Leader>ne :Vexplore<CR>
 " map <Leader>he :Hexplore<CR>
 

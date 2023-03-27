@@ -28,6 +28,9 @@ call vundle#end() " required
 "" Note: runtime can be regraded as PATH in vim
 " runtime plugin/SimpylFold/plugin/SimpylFold.vim
 
+"" Note: In vim 8+, we can put it into ~/.vim/pack/SimpylFold/start/SimpylFold
+"" Then we can use it without extra editing in .vimrc! Amazing~
+
 filetype plugin indent on "required
 
 " plugin configuration

@@ -1,0 +1,64 @@
+" package manager
+set nocompatible "nocompatible with vi
+" set nofoldenable
+filetype off
+
+"" If the plugin manager like Vundle is not available, we need to install the plugin manually
+"" And put the plugin, e.g. SimpylFold into ~/.vim/plugin/SimpylFold
+"" Then uncomment the following line
+"" Note: runtime can be regraded as PATH in vim
+" runtime plugin/SimpylFold/plugin/SimpylFold.vim
+
+"" Note: In vim 8+, we can put it into ~/.vim/pack/SimpylFold/start/SimpylFold
+"" Then we can use it without extra editing in .vimrc! Amazing~
+
+filetype plugin indent on "required
+
+" plugin configuration
+syntax on
+
+set background=dark
+" Plugin 'VamosC/gruvbox'
+" autocmd vimenter * ++nested colorscheme gruvbox
+" set t_Co=256
+
+" basic configuration
+set number "display line number
+set ruler
+set showmode "show bottom command or insert mode
+set encoding=utf-8
+set hlsearch
+set incsearch
+set splitbelow
+" set cursorline "highlight current line
+" hi CursorLine cterm=None ctermgb=gray ctermfg=black
+set sw=4
+set ts=4
+set expandtab
+
+" key mapping
+nnoremap <C-J> <C-W><C-J>
+nnoremap <C-K> <C-W><C-K>
+nnoremap <C-L> <C-W><C-L>
+nnoremap <C-H> <C-W><C-H>
+
+let mapleader = ","
+nmap <Leader>nh :noh<CR>
+
+" Plugin 'preservim/nerdtree'
+let mapleader = ","
+map <Leader>ne :NERDTreeToggle<CR>
+autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+"" if nerdtree is not installed, uncomment the following two lines
+" map <Leader>ne :Vexplore<CR>
+" map <Leader>he :Hexplore<CR>
+
+nnoremap <space> za
+
+" vim script
+function! AddPdb(text)
+    exe "normal! o" . a:text . "\<Esc>"
+endfunction
+
+let mapleader = ","
+nnoremap <Leader>d :call AddPdb('import pdb; pdb.set_trace()')<CR>

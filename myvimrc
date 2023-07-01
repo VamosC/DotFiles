@@ -12,6 +12,12 @@ filetype off
 "" Note: In vim 8+, we can put it into ~/.vim/pack/SimpylFold/start/SimpylFold
 "" Then we can use it without extra editing in .vimrc! Amazing~
 
+"" I like these plugins
+"" https://github.com/preservim/nerdtree.git
+"" https://github.com/VamosC/gruvbox.git
+"" https://github.com/tmhedberg/SimpylFold.git
+"" Thanks for their developers!
+
 filetype plugin indent on "required
 
 " plugin configuration

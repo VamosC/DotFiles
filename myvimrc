@@ -17,7 +17,7 @@ filetype off
 "" https://github.com/VamosC/gruvbox.git
 "" https://github.com/tmhedberg/SimpylFold.git
 "" https://github.com/nvie/vim-flake8
-"" Thanks for their developers! vim-flake8 really saves me!
+"" Thanks to their developers! vim-flake8 really saves me!
 
 filetype plugin indent on "required
 
